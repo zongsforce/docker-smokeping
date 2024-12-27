@@ -12,6 +12,7 @@ available_architectures:
   - {arch: "{{ arch_arm64 }}", tag: "arm64v8-latest"}
 # container parameters
 param_container_name: "{{ project_name }}"
+param_hostname: "hostname"
 param_usage_include_vols: true
 param_volumes:
   - {vol_path: "/config", vol_host_path: "/path/to/{{ project_name }}/config", desc: "Persistent config files"}
@@ -24,6 +25,7 @@ opt_param_env_vars:
   - {env_var: "MASTER_URL", env_value: "http://<master-host-ip>:80/smokeping/", desc: "Specify the master url to connect to. Used when in slave mode."}
   - {env_var: "SHARED_SECRET", env_value: "password", desc: "Specify the master shared secret for this host. Used when in slave mode."}
   - {env_var: "CACHE_DIR", env_value: "/tmp", desc: "Specify the cache directory for this host. Used when in slave mode."}
+  - {env_var: "--hostname", env_value: "hostname", desc: "In a master-slave architecture, the hostname of the master node is displayed as its name in the web interface, while the hostname of the slave nodes represents their device aliases. These aliases must match the ones defined in the master's Slaves file."}
 # application setup block
 app_setup_block_enabled: true
 app_setup_block: |
